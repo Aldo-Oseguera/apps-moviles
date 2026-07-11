@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  // Lista inicial de tareas
+  //datos de inicio 
   const [items, setItems] = useState([
     {
       id: '1',
@@ -27,43 +27,32 @@ export default function App() {
     }
   ]);
 
-  // Funcion para agregar una nueva tarea
+  //crear una nueva tarea
   const addItem = (title, description) => {
 
-    // Creo el nuevo objeto
     const newItem = {
       id: Date.now().toString(), 
       description
     };
 
-    // Agrego la nueva tarea a la lista
     setItems([...items, newItem]);
 
   };
 
   return (
 
-    // Contenedor principal de la navegacion
     <NavigationContainer>
 
       <Stack.Navigator>
-
-        {/* Pantalla de inicio */}
         <Stack.Screen name="Inicio">
           {(props) => <HomeScreen {...props} />}
         </Stack.Screen>
-
-        {/* Muestra todas las tareas */}
         <Stack.Screen name="Lista">
           {(props) => <ItemsScreen {...props} items={items} />}
         </Stack.Screen>
-
-        {/* Muestra el detalle de una tarea */}
         <Stack.Screen name="Detalle">
           {(props) => <DetailScreen {...props} />}
         </Stack.Screen>
-
-        {/* Formulario para agregar una tarea */}
         <Stack.Screen name="Agregar">
           {(props) => (
             <AddItemScreen
